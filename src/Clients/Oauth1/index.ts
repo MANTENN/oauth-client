@@ -239,7 +239,7 @@ export class Oauth1Client<Token extends Oauth1AccessToken> {
 
     const urlBuilder = this.urlBuilder(authorizeUrl)
 
-    this.configureRedirectRequest(urlBuilder)
+    await this.configureRedirectRequest(urlBuilder)
 
     /**
      * Invoke callback when defined. This is the place where one can configure

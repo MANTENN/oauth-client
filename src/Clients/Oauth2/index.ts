@@ -107,7 +107,7 @@ export class Oauth2Client<Token extends Oauth2AccessToken> {
     urlBuilder.param('redirect_uri', this.options.callbackUrl)
     urlBuilder.param('client_id', this.options.clientId)
 
-    this.configureRedirectRequest(urlBuilder)
+    await this.configureRedirectRequest(urlBuilder)
 
     /**
      * Invoke callback when defined. This is the place where one can configure
@@ -176,7 +176,7 @@ export class Oauth2Client<Token extends Oauth2AccessToken> {
      */
     httpClient.parseAs('json')
 
-    this.configureAccessTokenRequest(httpClient)
+    await this.configureAccessTokenRequest(httpClient)
 
     /**
      * Invoke the user callback after setting defaults. This allows the callback
