@@ -83,7 +83,7 @@ export class Oauth1Client<Token extends Oauth1AccessToken> {
      * Invoke callback to allow configuring request
      */
     if (typeof callback === 'function') {
-      callback(httpClient)
+      await callback(httpClient)
     }
 
     /**
@@ -290,8 +290,8 @@ export class Oauth1Client<Token extends Oauth1AccessToken> {
       oauth_token: accessOauthToken,
       oauth_token_secret: accessOauthTokenSecret,
       ...parsed
-    } = await this.makeSignedRequest(accessTokenUrl, 'post', requestToken, (request) => {
-      this.configureAccessTokenRequest(request)
+    } = await this.makeSignedRequest(accessTokenUrl, 'post', requestToken, async (request) => {
+      await this.configureAccessTokenRequest(request)
 
       if (typeof callback === 'function') {
         callback(request)
